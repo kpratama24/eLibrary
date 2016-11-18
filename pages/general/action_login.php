@@ -1,18 +1,28 @@
 <?php
-if (isset($_GET['username']) && preg_match('/^[ ]*[a-zA-Z0-9_-]{4,32}[ ]*$/', $_GET['username'])) {
-	$username = trim($_GET['username']);
+if (isset($_POST['username']) && preg_match('/^[a-zA-Z0-9_]{6,32}$/', $_POST['username'])) {
+	$username = strtolower($_POST['username']);
 } else {
-	die("Invalid username format");
+	die("Invalid username");
 }
-if (isset($_GET['password']) && $_GET['password']) {
-	$password = $_GET['password'];
+if (isset($_POST['password']) && $_POST['password']) {
+	$password = $_POST['password'];
 } else {
 	die("No password provided");
 }
-$sdbh = include '../../dbh.php';
-$sql = "SELECT COUNT(*) AS count FROM user WHERE username = :username AND password = :password";
-$params = array(':username' => $username, ':password' => $password);
-$sth = $sdbh->prepare($sql);
+
+$dbh = include '../../dbh.php';
+$sql = "SELECT username, password FROM user WHERE username = :username";
+$params = array(':username' => $username);
+$sth = $dbh->prepare($sql);
 $sth->execute($params);
-print_r($sth->fetchall(PDO::FETCH_ASSOC))
+
+if ($sth->rowCount() == 1) {
+	if (password_verify($password, $sth->fetch(PDO::FETCH_ASSOC)['password'])) {
+		echo "Valid password";
+	} else {
+		die("Invalid username or password");
+	}
+} else {
+	die("Invalid username or password");
+}
 ?>
