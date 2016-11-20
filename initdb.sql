@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS elibrary;
+DROP DATABASE IF EXISTS `elibrary`;
 
-CREATE DATABASE elibrary;
+CREATE DATABASE `elibrary`;
 
-USE elibrary;
+USE `elibrary`;
 
 CREATE TABLE IF NOT EXISTS `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
-  `password` varchar(128) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `name` varchar(100) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `address` varchar(200) NOT NULL,
@@ -53,6 +53,6 @@ CREATE TABLE IF NOT EXISTS `loan` (
   FOREIGN KEY (`book_id`) REFERENCES `book`(`id`)
 );
 
-INSERT INTO role(role_name) VALUES ('administrator');
+INSERT INTO `role`(`role_name`) VALUES ('administrator');
 
-INSERT INTO role(role_name) VALUES ('librarian');
+INSERT INTO `role`(`role_name`) VALUES ('librarian');
