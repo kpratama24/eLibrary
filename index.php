@@ -23,6 +23,7 @@
     <div class="bgimg w3-display-container w3-text-white">
       <div class="w3-display-middle w3-jumbo w3-padding-jumbo">
         <p>eLibrary</p>
+        <p class="w3-center"><span class="fa fa-arrow-down"></span></p>
       </div>
       <div class="w3-display-topleft w3-padding-jumbo w3-xlarge">
         <p><button onclick="document.getElementById('login').style.display='block'" class="w3-btn w3-hover-light-grey"> Login </button></p>
@@ -31,14 +32,13 @@
       <div class="w3-display-topright w3-padding-jumbo w3-xlarge">
         <p><button class="w3-btn w3-hover-light-grey"> Welcome Kevin ! </button></p>
       </div>
-      <div class="w3-display-bottomleft w3-padding-jumbo">
-        <p class="w3-xlarge w3-text-black"> Parahyangan Catholic University</p>
-        <p class="w3-large w3-text-black"> Creative Developers </p>
-        <p class="w3-large w3-text-black"> &copy; Prayogo Cendra and Kevin Pratama </p>
-      </div>
     </div>
     <!-- End w3-display-magic -->
-
+    <!-- Begin Body -->
+      <div class="w3-container">
+        Test
+      </div>
+    <!-- End Body -->
     <!-- Login Modal -->
     <div id="login" class="w3-modal">
       <div class="w3-modal-content w3-animate-zoom">
