@@ -30,7 +30,7 @@ if ($sth->rowCount()) {
 		$_SESSION['roleName'] = $row[role_name];
 		$_SESSION['loggedIn'] = true;
 
-		header("Location: signup.php?error=address");		
+		header("Location: ../../index.php");		
 		die("Login success");
 	} else {
 		header("Location: login.php?error=invalid");
