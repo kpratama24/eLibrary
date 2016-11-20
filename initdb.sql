@@ -53,6 +53,6 @@ CREATE TABLE IF NOT EXISTS `loan` (
   FOREIGN KEY (`book_id`) REFERENCES `book`(`id`)
 );
 
-INSERT INTO `role`(`role_name`) VALUES ('administrator');
+INSERT INTO `role`(`role_name`) VALUES ('Administrator');
 
-INSERT INTO `role`(`role_name`) VALUES ('librarian');
+INSERT INTO `role`(`role_name`) VALUES ('Librarian');
