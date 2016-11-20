@@ -28,6 +28,9 @@
         <p><button onclick="document.getElementById('login').style.display='block'" class="w3-btn w3-hover-light-grey"> Login </button></p>
         <p><button onclick="document.getElementById('signup').style.display='block'" class="w3-btn w3-hover-light-grey"> Sign Up </button></p>
       </div>
+      <div class="w3-display-topright w3-padding-jumbo w3-xlarge">
+        <p><button class="w3-btn w3-hover-light-grey"> Welcome Kevin ! </button></p>
+      </div>
       <div class="w3-display-bottomleft w3-padding-jumbo">
         <p class="w3-xlarge w3-text-black"> Parahyangan Catholic University</p>
         <p class="w3-large w3-text-black"> Creative Developers </p>
