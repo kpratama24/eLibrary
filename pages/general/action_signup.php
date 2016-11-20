@@ -51,6 +51,6 @@ $params = array(':username' => $username, ':password' => $password, ':name' => $
 $sth = $dbh->prepare($sql);
 $result = $sth->execute($params);
 
-header("Location: signup.php?error=address");
+header("Location: login.php?sigupsuccess=true");
 die("Signup success");
 ?>
