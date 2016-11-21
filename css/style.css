@@ -1,9 +1,3 @@
-.bgimg {
-	background-image: url('../img/library.jpg');
-	min-height: 100%;
-	background-position: center;
-	background-size: cover;
-}
 .full-width {
 	width: 100%;
 }

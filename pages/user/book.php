@@ -8,10 +8,26 @@ if (!isset($_SESSION['roleId'])) {
 	die("Redirected");
 }
 
+$searchCriteria = array(
+	'title' => "WHERE b.name LIKE %:query%",
+	'author' => "WHERE b.query LIKE %:query%",
+	'publisher' => "WHERE b.author LIKE %:query%",
+	'year' => "WHERE YEAR(b.year) = :query",
+	'category' => "WHERE c.category_name LIKE %:query%"
+	);
+
 $dbh = include '../../modules/dbh.php';
 $sql = "SELECT b.id AS id, b.code AS code, b.name AS name, b.author AS author, b.year AS year, c.category_name AS category_name FROM book AS b JOIN category AS c ON b.category_id = c.id";
-$sth = $dbh->prepare($sql);
-$sth->execute();
+
+if (isset($_GET['option']) && array_key_exists($_GET['option'], $searchCriteria)) {
+	$sql = $sql . " " . $searchCriteria[$_GET['option']];
+	$sth = $dbh->prepare($sql);
+	$sth->execute(array(':query' => $_GET['query']));
+} else {
+	$sth = $dbh->prepare($sql);
+	$sth->execute();
+}
+	echo "$sql";
 
 $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -20,6 +36,30 @@ include '../../templates/header.php';
 <div class="w3-card-2 w3-white">
 	<div class="w3-container w3-black">
 		<h2>Book List</h2>
+	</div>
+	<div class="w3-light-grey">
+		<form class="w3-row-padding" action="book.php" method="get">
+			<div class="w3-col s4 m3 l2 w3-section w3-row-padding">
+				<div class="w3-col" style="width: 50px;">
+					<label for="option-field"><i class="w3-xxlarge fa fa-filter"></i></label>
+				</div>
+				<div class="w3-rest">
+					<select class="w3-select w3-border w3-light-grey" name="option" id="option-field">
+						<option value="title" selected>Title</option>
+						<option value="author">Author</option>
+						<option value="publisher">Publisher</option>
+						<option value="year">Year</option>
+						<option value="category">Category</option>
+					</select>
+				</div>
+			</div>
+			<div class="w3-col s5 m7 l8 w3-section">
+				<input type="text" name="query" placeholder="Search Term" class="w3-input w3-light-grey">
+			</div>
+			<div class="w3-col s3 m2 l2 w3-section">
+				<input type="submit" value="Search" class="w3-btn-block">
+			</div>
+		</form>
 	</div>
 	<table class="w3-table w3-bordered">
 		<tr>
