@@ -12,7 +12,7 @@ if (isset($_POST['password']) && $_POST['password']) {
 	die("Password field doesn't meet criteria");
 }
 
-$dbh = include '../../dbh.php';
+$dbh = include '../../modules/dbh.php';
 $sql = "SELECT u.id AS id, u.username AS username, u.password AS password, u.name AS name, u.role_id AS role_id, r.role_name AS role_name FROM user AS u JOIN role AS r WHERE u.username = :username AND u.role_id = r.id";
 $params = array(':username' => $username);
 $sth = $dbh->prepare($sql);

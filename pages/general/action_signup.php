@@ -6,7 +6,7 @@ if (isset($_POST['username']) && preg_match('/^[ ]*[a-zA-Z0-9_]{4,32}[ ]*$/', $_
 	die("Username field doesn't meet criteria");
 }
 
-$dbh = include '../../dbh.php';
+$dbh = include '../../modules/dbh.php';
 $sql = "SELECT id FROM user WHERE username = :username";
 $params = array(':username' => $username);
 $sth = $dbh->prepare($sql);
@@ -51,6 +51,6 @@ $params = array(':username' => $username, ':password' => $password, ':name' => $
 $sth = $dbh->prepare($sql);
 $result = $sth->execute($params);
 
-header("Location: login.php?sigupsuccess=true");
+header("Location: login.php?sigupsuccess");
 die("Signup success");
 ?>

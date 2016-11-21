@@ -1,3 +1,3 @@
-<link rel="stylesheet" type="text/css" href="../css/w3.css">
-<link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="../css/style.css">
+<link rel="stylesheet" type="text/css" href=<?php echo "'" . "http://" . $_SERVER['SERVER_NAME'] . "/elibrary/css/w3.css" . "'"; ?>>
+<link rel="stylesheet" type="text/css" href=<?php echo "'" . "http://" . $_SERVER['SERVER_NAME'] . "/elibrary/css/font-awesome.min.css" . "'"; ?>>
+<link rel="stylesheet" type="text/css" href=<?php echo "'" . "http://" . $_SERVER['SERVER_NAME'] . "/elibrary/css/style.css" . "'"; ?>>
