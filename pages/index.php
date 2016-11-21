@@ -1,4 +1,14 @@
 <?php
+session_start();
+if (isset($_SESSION['roleId'])) {
+	if ($_SESSION['roleId'] == 1) {
+		header("Location: admin/adm.php");
+	} else if ($_SESSION['roleId'] == 2) {
+		header("Location: user/usr.php");
+	}
+	die("Redirected");
+}
+
 include '../templates/header.php';
 ?>
 <div class="w3-section w3-center">

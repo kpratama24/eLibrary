@@ -23,14 +23,13 @@ if ($sth->rowCount()) {
 	if (password_verify($password, $row['password'])) {
 
 		session_destroy();
-		session_start(); 
+		session_start();
 		$_SESSION['username'] = $row[username];
 		$_SESSION['name'] = $row[name];
 		$_SESSION['roleId'] = $row[role_id];
 		$_SESSION['roleName'] = $row[role_name];
-		$_SESSION['loggedIn'] = true;
 
-		header("Location: ../../index.php");		
+		header("Location: ../../index.php");
 		die("Login success");
 	} else {
 		header("Location: login.php?error=invalid");
