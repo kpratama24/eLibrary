@@ -10,19 +10,15 @@ if (!isset($_SESSION['roleId'])) {
 
 include '../../templates/header.php';
 ?>
-<ul class="w3-navbar w3-light-grey">
-	<li class="w3-right"><a href="../general/logout.php"><i class="fa fa-sign-out"></i></a></li>
-	<li class="w3-right"><a href="../general/profile.php"><i class="fa fa-user"></i></a></li>
-	<li class="w3-right"><a href="#"><i class="fa fa-envelope"></i></a></li>
-	<li class="w3-right"><a href="../general/news.php"><i class="fa fa-newspaper-o"></i></a></li>
-	<li class="w3-right"><a href="../"><i class="fa fa-home"></i></a></li>
-</ul>
-<nav class="w3-sidenav w3-white w3-center" style="width:20%">
-	<a href="#">Link 1</a> 
-	<a href="#">Link 2</a> 
-	<a href="#">Link 3</a> 
-	<a href="#">Link 4</a> 
-</nav>
+<div class="w3-card-2 w3-white">
+	<div class="w3-container w3-black">
+		<h2>Welcome to eLibrary</h2>
+	</div>
+	<div class="w3-container">	
+		<h3>About Us</h3>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+</div>
 <?php
 include '../../templates/footer.php';
 ?>
