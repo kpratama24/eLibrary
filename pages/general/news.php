@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['roleId'])) {
+if (!isset($_SESSION['roleId'])) {
 	header("Location: ../");
 	die("Redirected");
 }
