@@ -9,25 +9,24 @@ if (!isset($_SESSION['roleId'])) {
 }
 
 $searchCriteria = array(
-	'title' => "WHERE b.name LIKE %:query%",
-	'author' => "WHERE b.query LIKE %:query%",
-	'publisher' => "WHERE b.author LIKE %:query%",
-	'year' => "WHERE YEAR(b.year) = :query",
-	'category' => "WHERE c.category_name LIKE %:query%"
-	);
+	'title' => "WHERE b.name LIKE :query",
+	'author' => "WHERE b.author LIKE :query",
+	'publisher' => "WHERE b.publisher LIKE :query",
+	'year' => "WHERE YEAR(b.year) LIKE :query",
+	'category' => "WHERE c.category_name LIKE :query"
+);
 
 $dbh = include '../../modules/dbh.php';
-$sql = "SELECT b.id AS id, b.code AS code, b.name AS name, b.author AS author, b.year AS year, c.category_name AS category_name FROM book AS b JOIN category AS c ON b.category_id = c.id";
+$sql = "SELECT b.id AS id, b.code AS code, b.name AS name, b.author AS author, b.publisher AS publisher, b.year AS year, c.category_name AS category_name FROM book AS b JOIN category AS c ON b.category_id = c.id";
 
 if (isset($_GET['option']) && array_key_exists($_GET['option'], $searchCriteria)) {
 	$sql = $sql . " " . $searchCriteria[$_GET['option']];
 	$sth = $dbh->prepare($sql);
-	$sth->execute(array(':query' => $_GET['query']));
+	$sth->execute(array(':query' => "%" . $_GET['query'] . "%"));
 } else {
 	$sth = $dbh->prepare($sql);
 	$sth->execute();
 }
-	echo "$sql";
 
 $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -45,16 +44,16 @@ include '../../templates/header.php';
 				</div>
 				<div class="w3-rest">
 					<select class="w3-select w3-border w3-light-grey" name="option" id="option-field">
-						<option value="title" selected>Title</option>
-						<option value="author">Author</option>
-						<option value="publisher">Publisher</option>
-						<option value="year">Year</option>
-						<option value="category">Category</option>
+						<option value="title" <?php echo (isset($_GET['option']) && $_GET['option'] == 'title') ? 'selected' : ''; ?>>Title</option>
+						<option value="author" <?php echo (isset($_GET['option']) && $_GET['option'] == 'author') ? 'selected' : ''; ?>>Author</option>
+						<option value="publisher" <?php echo (isset($_GET['option']) && $_GET['option'] == 'publisher') ? 'selected' : ''; ?>>Publisher</option>
+						<option value="year" <?php echo (isset($_GET['option']) && $_GET['option'] == 'year') ? 'selected' : ''; ?>>Year</option>
+						<option value="category" <?php echo (isset($_GET['option']) && $_GET['option'] == 'category') ? 'selected' : ''; ?>>Category</option>
 					</select>
 				</div>
 			</div>
 			<div class="w3-col s5 m7 l8 w3-section">
-				<input type="text" name="query" placeholder="Search Term" class="w3-input w3-light-grey">
+				<input type="text" name="query" placeholder="Search Term" class="w3-input w3-light-grey" value=<?php echo isset($_GET['query']) ? $_GET['query'] : ''; ?>>
 			</div>
 			<div class="w3-col s3 m2 l2 w3-section">
 				<input type="submit" value="Search" class="w3-btn-block">
@@ -64,9 +63,10 @@ include '../../templates/header.php';
 	<table class="w3-table w3-bordered">
 		<tr>
 			<th>Code</th>
-			<th>Name</th>
+			<th>Title</th>
 			<th>Author</th>
-			<th>Year</th>
+			<th>Publication Year</th>
+			<th>Publisher</th>
 			<th>Category</th>
 		</tr>
 <?php
@@ -77,6 +77,7 @@ foreach ($books as $book) {
 			<td><?php echo $book['name']; ?></td>
 			<td><?php echo $book['author']; ?></td>
 			<td><?php echo $book['year']; ?></td>
+			<td><?php echo $book['publisher']; ?></td>
 			<td><?php echo $book['category_name']; ?></td>
 		</tr>
 <?php
