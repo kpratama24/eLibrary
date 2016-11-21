@@ -7,7 +7,7 @@
 include 'style.php';
 ?>
 </head>
-<body class="w3-light-grey">
+<body class="w3-grey">
 <header class="w3-display-container" >
 	<img src=<?php echo "'" . "http://" . $_SERVER['SERVER_NAME'] . "/elibrary/img/banner2.jpg" . "'"; ?> style="width: 100%;">
 	<div class="w3-display-middle w3-text-white w3-text-shadow"><h1><b><a href=<?php echo "'" . "http://" . $_SERVER['SERVER_NAME'] . "/elibrary" . "'"; ?>>eLIBRARY</a></b></h1></div>
