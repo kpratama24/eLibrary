@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login</title>
-	<?php include '../../modules/dependencies.php'; ?>
-</head>
-<body>
+<?php
+include '../../templates/header.php';
+?>
 <form action="action_login.php" method="post">
 	<input type="text" name="username" placeholder="username">
 	<br>
@@ -12,5 +8,6 @@
 	<br>
 	<input type="submit" value="Login">
 </form>
-</body>
-</html>
+<?php
+include '../../templates/footer.php';
+?>
