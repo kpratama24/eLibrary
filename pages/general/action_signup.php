@@ -51,6 +51,6 @@ $params = array(':username' => $username, ':password' => $password, ':name' => $
 $sth = $dbh->prepare($sql);
 $result = $sth->execute($params);
 
-header("Location: login.php?sigupsuccess");
+header("Location: login.php?signupsuccess");
 die("Signup success");
 ?>

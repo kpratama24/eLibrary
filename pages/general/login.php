@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (isset($_SESSION['roleId'])) {
+	header("Location: ../");
+	die("Redirected");
+}
+
 include '../../templates/header.php';
 ?>
 <form action="action_login.php" method="post" class="w3-card-2 w3-content w3-margin-top" style="max-width: 400px;">
