@@ -7,7 +7,7 @@ if (isset($_SESSION['roleId'])) {
 
 include '../../templates/header.php';
 ?>
-<form action="action_signup.php" method="post" class="w3-card-2 w3-content w3-margin-top" style="max-width: 400px;">
+<form action="action_signup.php" method="post" class="w3-card-2 w3-content" style="max-width: 400px;">
 	<div class="w3-container w3-black">
 		<h2>Creating New Account</h2>
 	</div>
