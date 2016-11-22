@@ -24,10 +24,11 @@ if ($sth->rowCount()) {
 
 		session_destroy();
 		session_start();
-		$_SESSION['username'] = $row[username];
-		$_SESSION['name'] = $row[name];
-		$_SESSION['roleId'] = $row[role_id];
-		$_SESSION['roleName'] = $row[role_name];
+		$_SESSION['id'] = $row['id'];
+		$_SESSION['username'] = $row['username'];
+		$_SESSION['name'] = $row['name'];
+		$_SESSION['roleId'] = $row['role_id'];
+		$_SESSION['roleName'] = $row['role_name'];
 
 		header("Location: ../../index.php");
 		die("Login success");
