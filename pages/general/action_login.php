@@ -22,7 +22,6 @@ if ($sth->rowCount()) {
 	$row = $sth->fetch(PDO::FETCH_ASSOC);
 	if (password_verify($password, $row['password'])) {
 
-		session_destroy();
 		session_start();
 		$_SESSION['id'] = $row['id'];
 		$_SESSION['username'] = $row['username'];
