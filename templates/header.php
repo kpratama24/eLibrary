@@ -13,8 +13,8 @@ include 'style.php';
 include 'topnav.php';
 ?>
 	<div class="w3-display-container">
-		<img src=<?php echo "'" . "http://" . $_SERVER['HTTP_HOST'] . "/elibrary/img/banner2.jpg" . "'"; ?> class="full-width">
-		<div class="w3-display-middle w3-text-white w3-text-shadow"><h1><b><a href=<?php echo "'" . "http://" . $_SERVER['HTTP_HOST'] . "/elibrary" . "'"; ?>>eLIBRARY</a></b></h1></div>
+		<img src="<?php echo "http://$_SERVER[HTTP_HOST]/elibrary/img/banner2.jpg"; ?>" class="full-width">
+		<div class="w3-display-middle w3-text-white w3-text-shadow"><h1><b><a href="<?php echo "http://$_SERVER[HTTP_HOST]/elibrary/"; ?>">eLIBRARY</a></b></h1></div>
 	</div>
 <?php
 include 'nav.php';
