@@ -4,12 +4,6 @@ CREATE DATABASE `elibrary`;
 
 USE `elibrary`;
 
-CREATE TABLE IF NOT EXISTS `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-);
-
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
@@ -19,8 +13,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `address` varchar(200) NOT NULL,
   `role_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  FOREIGN KEY (`role_id`) REFERENCES `role`(`id`)
+  UNIQUE KEY `username` (`username`)
 );
 
 CREATE TABLE IF NOT EXISTS `category` (
@@ -52,7 +45,3 @@ CREATE TABLE IF NOT EXISTS `loan` (
   FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
   FOREIGN KEY (`book_id`) REFERENCES `book`(`id`)
 );
-
-INSERT INTO `role`(`role_name`) VALUES ('Administrator');
-
-INSERT INTO `role`(`role_name`) VALUES ('Librarian');

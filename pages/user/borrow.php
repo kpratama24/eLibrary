@@ -1,12 +1,14 @@
 <?php
 session_start();
-if (!isset($_SESSION['roleId'])) {
+if (!isset($_SESSION['id'])) {
 	header("Location: ../");
 	die("Redirected");
 } else if ($_SESSION['roleId'] != 2) {
 	header("Location: ../");
 	die("Redirected");
 }
+
+include '../../templates/header.php';
 
 $dbh = include '../../modules/dbh.php';
 $sql = "SELECT b.id AS id, b.code AS code, b.name AS name, b.author AS author, l.loan_date AS loan_date,l.return_date AS return_date, l.max_day AS max_day FROM book AS b JOIN loan AS l ON b.id = l.book_id WHERE l.user_id = :user_id";
@@ -15,7 +17,6 @@ $sth->execute(array(':user_id' => $_SESSION['id']));
 
 $loans = $sth->fetchAll(PDO::FETCH_ASSOC);
 
-include '../../templates/header.php';
 ?>
 <div class="w3-card-2 w3-white">
 	<div class="w3-container w3-black">

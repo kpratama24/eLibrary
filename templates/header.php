@@ -20,7 +20,7 @@ include 'topnav.php';
 include 'nav.php';
 ?>
 </header>
-<main class="container w3-margin-top w3-margin-bottom">
+<main class="container w3-margin-top before-footer">
 
 <?php
 // echo "'" . "http://" . $_SERVER['HTTP_HOST'] . "/" . "'";

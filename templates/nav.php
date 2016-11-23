@@ -1,5 +1,5 @@
 <?php
-if (isset($_SESSION['roleId'])) {
+if (isset($_SESSION['id'])) {
 ?>
 <nav class="w3-white">
 	<div class="container w3-navbar">

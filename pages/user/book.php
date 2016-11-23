@@ -1,12 +1,14 @@
 <?php
 session_start();
-if (!isset($_SESSION['roleId'])) {
+if (!isset($_SESSION['id'])) {
 	header("Location: ../");
 	die("Redirected");
 } else if ($_SESSION['roleId'] != 2) {
 	header("Location: ../");
 	die("Redirected");
 }
+
+include '../../templates/header.php';
 
 $searchCriteria = array(
 	'title' => "WHERE b.name LIKE :query",
@@ -29,8 +31,6 @@ if (isset($_GET['option']) && array_key_exists($_GET['option'], $searchCriteria)
 }
 
 $books = $sth->fetchAll(PDO::FETCH_ASSOC);
-
-include '../../templates/header.php';
 ?>
 <div class="w3-card-2 w3-white">
 	<div class="w3-container w3-black">

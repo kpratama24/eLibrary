@@ -1,7 +1,8 @@
 <?php
 session_start();
+unset($_SESSION['id']);
+unset($_SESSION['roleId']);
 session_destroy();
-session_start();
 
 include '../../templates/header.php';
 ?>
