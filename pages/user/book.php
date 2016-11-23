@@ -14,7 +14,7 @@ $searchCriteria = array(
 	'title' => "WHERE b.name LIKE :query",
 	'author' => "WHERE b.author LIKE :query",
 	'publisher' => "WHERE b.publisher LIKE :query",
-	'year' => "WHERE YEAR(b.year) LIKE :query",
+	'year' => "WHERE b.year LIKE :query",
 	'category' => "WHERE c.category_name LIKE :query"
 );
 

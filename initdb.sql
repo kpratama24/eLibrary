@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `book` (
   `name` varchar(200) NOT NULL,
   `author` varchar(100) NOT NULL,
   `publisher` varchar(100) NOT NULL,
-  `year` date NOT NULL,
+  `year` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`category_id`) REFERENCES `category`(`id`)
@@ -39,8 +39,9 @@ CREATE TABLE IF NOT EXISTS `loan` (
   `user_id` int(11) NOT NULL,
   `book_id` int(11) NOT NULL,
   `loan_date` date NOT NULL,
-  `return_date` date DEFAULT NULL,
   `max_day` int(11) NOT NULL,
+  `return_date` date DEFAULT NULL,
+  `fine` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`user_id`) REFERENCES `user`(`id`),
   FOREIGN KEY (`book_id`) REFERENCES `book`(`id`)

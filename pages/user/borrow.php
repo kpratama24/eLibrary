@@ -34,15 +34,29 @@ $loans = $sth->fetchAll(PDO::FETCH_ASSOC);
 		</tr>
 <?php
 foreach ($loans as $loan) {
+	$mustReturnDate = (new DateTime($loan['loan_date']))->add(new DateInterval("P$loan[max_day]D"));
+	if (isset($loan['return_date'])) {
+		$date = new DateTime($loan['return_date']);
+	} else {
+		$date = new DateTime("now");
+	}
+	$diff = $mustReturnDate->diff($date);
+	$diffDays = intval($diff->format("%R%a"));
+	if ($diffDays < 0) {
+		$overdue = 0;
+	} else {
+		$overdue = $diffDays;
+	}
+	$fine = $overdue * 10000;
 ?>
 		<tr>
 			<td><?php echo $loan['code']; ?></td>
 			<td><?php echo $loan['name']; ?></td>
 			<td><?php echo $loan['author']; ?></td>
 			<td><?php echo $loan['loan_date']; ?></td>
-			<td><?php echo $loan['return_date']; ?></td>
-			<td></td>
-			<td></td>
+			<td><?php echo $loan['return_date'] != NULL ? $loan['return_date'] : 'Not yet'; ?></td>
+			<td><?php echo "$overdue days"; ?></td>
+			<td><?php echo 'Rp. ' . number_format($fine, 0, ',', ' ') ?></td>
 		</tr>
 <?php
 }
