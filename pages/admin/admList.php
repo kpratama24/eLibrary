@@ -32,8 +32,23 @@ $users = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="w3-card-2 w3-white">
 	<div class="w3-container w3-black">
-		<h2>Member List</h2>
+		<h2>Member List <a href="#" class="w3-btn w3-white w3-large w3-right" onclick="document.getElementById('addAdmModal').style.display='block'"><i class="fa fa-plus"></i> Add Administrator</a></h2>
 	</div>
+<?php
+if (isset($_GET['usernametaken'])) {
+?>
+	<div class="w3-container w3-red">Username is taken</div>
+<?php
+} else if (isset($_GET['addadmsuccess'])) {
+?>
+	<div class="w3-container w3-green">New administrator &quot;<b><?php echo $_GET['username']; ?></b>&quot; with password &quot;<b><?php echo $_GET['password']; ?></b>&quot; has been created succesfully</div>
+<?php
+} else if (isset($_GET['addadmfailed'])) {
+?>
+	<div class="w3-container w3-red">Failed to create new administrator</div>
+<?php
+}
+?>
 	<form class="w3-row-padding" action="admList.php" method="get">
 		<div class="w3-col s4 m3 l2 w3-section w3-row-padding">
 			<div class="w3-col" style="width: 50px;">
@@ -76,6 +91,39 @@ foreach ($users as $user) {
 ?>
 	</table>
 </div>
+<!-- Add Book Modal -->
+<div id="addAdmModal" class="w3-modal">
+	<div class="w3-modal-content w3-animate-opacity">
+		<header class="w3-container w3-brown">
+			<span onclick="document.getElementById('addAdmModal').style.display='none'" class="w3-closebtn">&times;</span>
+			<h2>New Adminitrator</h2>
+		</header>		
+		<div class="w3-container">
+			<form action="action_add_admin.php" method="post">
+				<p>
+					<input type="text" name="username" pattern="^[ ]*[a-zA-Z0-9_]{4,32}[ ]*$" id="username-field" class="w3-input" required>
+					<label class="w3-label w3-validate" for="username-field">Username</label>
+				</p>
+				<p>
+					<input type="text" name="name" pattern="^[ ]*[a-zA-Z]+([ ][a-zA-Z]+)*[ ]*$" id="name-field" class="w3-input" required>
+					<label class="w3-label w3-validate" for="name-field">Name</label>
+				</p>
+				<p>
+					<input type="text" name="phone" pattern="^[ ]*[+]?[0-9]{4,}[ ]*$" id="phone-field" class="w3-input" required>
+					<label class="w3-label w3-validate" for="phone-field">Phone</label>
+				</p>
+				<p>
+					<textarea name="address" id="address-field" class="w3-input" required></textarea>
+					<label class="w3-label w3-validate" for="address-field">Address</label>
+				</p>
+				<p>
+					<input type="submit" value="REGISTER" class="w3-btn">
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
 <?php
 include '../../templates/footer.php';
 ?>
