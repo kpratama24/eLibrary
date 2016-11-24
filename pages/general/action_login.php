@@ -13,7 +13,7 @@ if (isset($_POST['password']) && $_POST['password']) {
 }
 
 $dbh = include '../../modules/dbh.php';
-$sql = "SELECT u.id AS id, u.username AS username, u.password AS password, u.name AS name, u.role_id AS role_id, r.role_name AS role_name FROM user AS u JOIN role AS r WHERE u.username = :username AND u.role_id = r.id";
+$sql = "SELECT id, password, role_id FROM user WHERE username = :username";
 $params = array(':username' => $username);
 $sth = $dbh->prepare($sql);
 $sth->execute($params);
@@ -22,13 +22,9 @@ if ($sth->rowCount()) {
 	$row = $sth->fetch(PDO::FETCH_ASSOC);
 	if (password_verify($password, $row['password'])) {
 
-		session_destroy();
 		session_start();
 		$_SESSION['id'] = $row['id'];
-		$_SESSION['username'] = $row['username'];
-		$_SESSION['name'] = $row['name'];
 		$_SESSION['roleId'] = $row['role_id'];
-		$_SESSION['roleName'] = $row['role_name'];
 
 		header("Location: ../../index.php");
 		die("Login success");

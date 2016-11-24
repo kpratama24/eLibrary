@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['roleId'])) {
+if (isset($_SESSION['id'])) {
 	if ($_SESSION['roleId'] == 1) {
 		header("Location: admin/adm.php");
 	} else if ($_SESSION['roleId'] == 2) {

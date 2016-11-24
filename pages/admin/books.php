@@ -3,7 +3,7 @@ session_start();
 if (!isset($_SESSION['id'])) {
 	header("Location: ../");
 	die("Redirected");
-} else if ($_SESSION['roleId'] != 2) {
+} else if ($_SESSION['roleId'] != 1) {
 	header("Location: ../");
 	die("Redirected");
 }
@@ -34,10 +34,21 @@ $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="w3-card-2 w3-white">
 	<div class="w3-container w3-black">
-		<h2>Book List</h2>
+		<h2>Book List <a href="#" class="w3-btn w3-white w3-large w3-right" onclick="document.getElementById('addBookModal').style.display='block'"><i class="fa fa-plus"></i> Add Book</a></h2>
 	</div>
+<?php
+if (isset($_GET['addbooksuccess'])) {
+?>
+	<div class="w3-container w3-green">Book added successfully</div>
+<?php
+} else if (isset($_GET['addbookfailed'])) {
+?>
+	<div class="w3-container w3-red">Failed to add book</div>
+<?php
+}
+?>
 	<div class="w3-light-grey">
-		<form class="w3-row-padding" action="book.php" method="get">
+		<form class="w3-row-padding" action="books.php" method="get">
 			<div class="w3-col s4 m3 l2 w3-section w3-row-padding">
 				<div class="w3-col" style="width: 50px;">
 					<label for="option-field"><i class="w3-xxlarge fa fa-filter"></i></label>
@@ -85,6 +96,59 @@ foreach ($books as $book) {
 ?>
 	</table>
 </div>
+<!-- Add Book Modal -->
+<div id="addBookModal" class="w3-modal">
+	<div class="w3-modal-content w3-animate-opacity">
+		<header class="w3-container w3-brown">
+			<span onclick="document.getElementById('addBookModal').style.display='none'" class="w3-closebtn">&times;</span>
+			<h2>Book Data</h2>
+		</header>		
+		<div class="w3-container">
+			<form action="action_add_book.php" method="post">
+				<p>
+					<input type="text" name="name" id="name-field" class="w3-input" required>
+					<label class="w3-label w3-validate" for="name-field">Title</label>
+				</p>
+				<p>
+					<input type="text" name="author" id="author-field" class="w3-input" required>
+					<label class="w3-label w3-validate" for="author-field">Author</label>
+				</p>
+				<p>
+					<input type="number" name="year" id="year-field" class="w3-input" required>
+					<label class="w3-label w3-validate" for="year-field">Publication Year</label>
+				</p>
+				<p>
+					<input type="text" name="publisher" id="publisher-field" class="w3-input" required>
+					<label class="w3-label w3-validate" for="publisher-field">Publisher</label>
+				</p>
+				<p>
+					<select name="category_id" id="category-field" class="w3-input" required>
+						<option value="">Select category</option>
+<?php
+$dbh = include '../../modules/dbh.php';
+$sql = "SELECT id, category_name FROM category";
+$sth = $dbh->prepare($sql);
+$sth->execute();
+
+$categories = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($categories as $category) {
+?>
+						<option value="<?php echo $category['id']; ?>"><?php echo $category['category_name']; ?></option>
+<?php
+}
+?>
+					</select>
+					<label class="w3-label w3-validate" for="category-field">Category</label>
+				</p>
+				<p>
+					<input type="submit" value="ADD" class="w3-btn">
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
 <?php
 include '../../templates/footer.php';
 ?>
