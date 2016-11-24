@@ -36,6 +36,17 @@ $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 	<div class="w3-container w3-black">
 		<h2>Book List <a href="#" class="w3-btn w3-white w3-large w3-right" onclick="document.getElementById('addBookModal').style.display='block'"><i class="fa fa-plus"></i> Add Book</a></h2>
 	</div>
+<?php
+if (isset($_GET['addbooksuccess'])) {
+?>
+	<div class="w3-container w3-green">Book added successfully</div>
+<?php
+} else if (isset($_GET['addbookfailed'])) {
+?>
+	<div class="w3-container w3-red">Failed to add book</div>
+<?php
+}
+?>
 	<div class="w3-light-grey">
 		<form class="w3-row-padding" action="books.php" method="get">
 			<div class="w3-col s4 m3 l2 w3-section w3-row-padding">
@@ -91,9 +102,9 @@ foreach ($books as $book) {
 		<header class="w3-container w3-brown">
 			<span onclick="document.getElementById('addBookModal').style.display='none'" class="w3-closebtn">&times;</span>
 			<h2>Book Data</h2>
-		</header>
+		</header>		
 		<div class="w3-container">
-			<form action="" method="post">
+			<form action="action_add_book.php" method="post">
 				<p>
 					<input type="text" name="name" id="name-field" class="w3-input" required>
 					<label class="w3-label w3-validate" for="name-field">Title</label>
@@ -112,10 +123,21 @@ foreach ($books as $book) {
 				</p>
 				<p>
 					<select name="category_id" id="category-field" class="w3-input" required>
-						<option></option>
-						<option></option>
-						<option></option>
-						<option></option>
+						<option value="">Select category</option>
+<?php
+$dbh = include '../../modules/dbh.php';
+$sql = "SELECT id, category_name FROM category";
+$sth = $dbh->prepare($sql);
+$sth->execute();
+
+$categories = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($categories as $category) {
+?>
+						<option value="<?php echo $category['id']; ?>"><?php echo $category['category_name']; ?></option>
+<?php
+}
+?>
 					</select>
 					<label class="w3-label w3-validate" for="category-field">Category</label>
 				</p>
