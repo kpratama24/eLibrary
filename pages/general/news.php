@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
 include '../../templates/header.php';
 ?>
 <div class="w3-card-2 w3-white">
-	<div class="w3-container w3-black">
+	<div class="w3-container w3-brown">
 		<h2>Trump election: Priebus and Bannon given key roles</h2>
 	</div>
 	<div class="w3-container">

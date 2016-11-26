@@ -16,7 +16,7 @@ $sth->execute($params);
 $row = $sth->fetch(PDO::FETCH_ASSOC);
 ?>
 <div class="w3-card-2 w3-white w3-content" style="max-width: 300px;">
-	<div class="w3-container w3-black">
+	<div class="w3-container w3-brown">
 		<h2>Profile Card</h2>
 	</div>
 <?php
@@ -38,10 +38,10 @@ if (isset($_GET['profileupdated'])) {
 	<div class="w3-container">
 		<h3 class="w3-center"><?php echo $row['name'] ?></h3>
 		<p>
-			<a href="#"><button onclick="document.getElementById('updateModal').style.display='block'" class="w3-btn-block w3-black">UPDATE USER INFO</button></a>
+			<a href="#"><button onclick="document.getElementById('updateModal').style.display='block'" class="w3-btn-block w3-brown">UPDATE USER INFO</button></a>
 		</p>
 		<p>
-			<a href="#"><button onclick="document.getElementById('changePasswordModal').style.display='block'" class="w3-btn-block w3-black">CHANGE PASSWORD</button></a>
+			<a href="#"><button onclick="document.getElementById('changePasswordModal').style.display='block'" class="w3-btn-block w3-brown">CHANGE PASSWORD</button></a>
 		</p>
 	</div>
 </div>
@@ -71,7 +71,7 @@ if (isset($_GET['profileupdated'])) {
 					<label for="address-field" class="w3-label w3-validate">Address</label>
 				</p>
 				<p>
-					<input type="submit" value="UPDATE USER INFO" class="w3-btn">
+					<input type="submit" value="UPDATE USER INFO" class="w3-btn w3-brown">
 				</p>
 			</form>
 		</div>
@@ -100,7 +100,7 @@ if (isset($_GET['profileupdated'])) {
 					<label for="newpassword-field" class="w3-label w3-validate">New Password</label>
 				</p>
 				<p>
-					<input type="submit" value="CHANGE PASSWORD" class="w3-btn">
+					<input type="submit" value="CHANGE PASSWORD" class="w3-btn w3-brown">
 				</p>
 			</form>
 		</div>

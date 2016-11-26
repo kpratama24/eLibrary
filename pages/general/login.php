@@ -8,7 +8,7 @@ if (isset($_SESSION['id'])) {
 include '../../templates/header.php';
 ?>
 <form action="action_login.php" method="post" class="w3-card-2 w3-content" style="max-width: 400px;">
-	<div class="w3-container w3-black">
+	<div class="w3-container w3-brown">
 		<h2>Login</h2>
 	</div>
 <?php
@@ -41,8 +41,8 @@ if (isset($_GET['error']) && array_key_exists($_GET['error'], $errorMessage)) {
 			<label for="password-field" class="w3-label w3-validate">Password</label>
 		</p>
 		<p>
-			<input type="submit" value="LOGIN" class="w3-btn">
-			<a href="../" class="w3-btn">CANCEL</a>
+			<input type="submit" value="LOGIN" class="w3-btn w3-brown">
+			<a href="../" class="w3-btn w3-brown">CANCEL</a>
 		</p>
 	</div>
 </form>

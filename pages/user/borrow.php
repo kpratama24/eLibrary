@@ -19,7 +19,7 @@ $loans = $sth->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <div class="w3-card-2 w3-white">
-	<div class="w3-container w3-black">
+	<div class="w3-container w3-brown">
 		<h2>Borrowing History</h2>
 	</div>
 	<table class="w3-table w3-bordered">
