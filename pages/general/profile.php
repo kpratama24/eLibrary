@@ -22,15 +22,26 @@ $row = $sth->fetch(PDO::FETCH_ASSOC);
 <?php
 if (isset($_GET['profileupdated'])) {
 ?>
-	<div class="w3-container w3-green">Profile Updated</div>
+	<div class="w3-container w3-green">Profile updated</div>
+<?php
+} else if (isset($_GET['passwordchangesuccess'])) {
+?>
+	<div class="w3-container w3-green">Password changed</div>
+<?php
+} else if (isset($_GET['passwordchangefailed'])) {
+?>
+	<div class="w3-container w3-red">Old password doesn't match</div>
 <?php
 }
 ?>
 	<img src="../../img/profile.jpg" class="full-width">
 	<div class="w3-container">
+		<h3 class="w3-center"><?php echo $row['name'] ?></h3>
 		<p>
-			<h3 class="w3-center"><?php echo $row['name'] ?></h3>
 			<a href="#"><button onclick="document.getElementById('updateModal').style.display='block'" class="w3-btn-block w3-black">UPDATE USER INFO</button></a>
+		</p>
+		<p>
+			<a href="#"><button onclick="document.getElementById('changePasswordModal').style.display='block'" class="w3-btn-block w3-black">CHANGE PASSWORD</button></a>
 		</p>
 	</div>
 </div>
@@ -61,6 +72,35 @@ if (isset($_GET['profileupdated'])) {
 				</p>
 				<p>
 					<input type="submit" value="UPDATE USER INFO" class="w3-btn">
+				</p>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- End Modal -->
+<!-- Change Password Modal -->
+<div id="changePasswordModal" class="w3-modal">
+	<div class="w3-modal-content w3-animate-opacity">
+		<header class="w3-container w3-brown">
+			<span onclick="document.getElementById('changePasswordModal').style.display='none'" class="w3-closebtn">&times;</span>
+			<h2>Change Password</h2>
+		</header>
+		<div class="w3-container">
+			<form action="action_change_password.php" method="post">
+				<p class="w3-hide">
+					<input type="text" name="username" value="<?php echo "$row[username]"; ?>" id="username-field" class="w3-input">
+					<label for="username-field" class="w3-label w3-validate">Username</label>
+				</p>
+				<p>
+					<input type="password" name="oldpassword" id="oldpassword-field" class="w3-input" required>
+					<label for="oldpassword-field" class="w3-label w3-validate">Old Password</label>
+				</p>
+				<p>
+					<input type="password" name="newpassword" id="newpassword-field" class="w3-input" required>
+					<label for="newpassword-field" class="w3-label w3-validate">New Password</label>
+				</p>
+				<p>
+					<input type="submit" value="CHANGE PASSWORD" class="w3-btn">
 				</p>
 			</form>
 		</div>
