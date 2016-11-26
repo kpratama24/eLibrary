@@ -1,5 +1,5 @@
 <?php
-$request_uri = basename($_SERVER["REQUEST_URI"], ".php") ;
+$request_uri = basename($_SERVER["REQUEST_URI"], ".php"); //Take current page
 if (isset($_SESSION['id'])) {
 	if ($_SESSION['roleId'] == 2) {
 ?>
