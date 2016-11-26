@@ -8,7 +8,7 @@ include '../../templates/header.php';
 ?>
 <meta http-equiv="refresh" content="5; url=../">
 <div class="w3-card-2 w3-white">
-	<div class="w3-container w3-black">
+	<div class="w3-container w3-brown">
 		<h2>You have successfully logged out</h2>
 	</div>
 	<div class="w3-container">	

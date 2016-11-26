@@ -33,7 +33,7 @@ if (isset($_GET['option']) && array_key_exists($_GET['option'], $searchCriteria)
 $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="w3-card-2 w3-white">
-	<div class="w3-container w3-black">
+	<div class="w3-container w3-brown">
 		<h2>Book List <a href="#" class="w3-btn w3-white w3-large w3-right" onclick="document.getElementById('addBookModal').style.display='block'"><i class="fa fa-plus"></i> Add Book</a></h2>
 	</div>
 <?php
@@ -67,7 +67,7 @@ if (isset($_GET['addbooksuccess'])) {
 				<input type="text" name="query" placeholder="Search Term" class="w3-input w3-light-grey" value=<?php echo isset($_GET['query']) ? $_GET['query'] : ''; ?>>
 			</div>
 			<div class="w3-col s3 m2 l2 w3-section">
-				<input type="submit" value="Search" class="w3-btn-block">
+				<input type="submit" value="Search" class="w3-btn-block w3-brown">
 			</div>
 		</form>
 	</div>
@@ -142,7 +142,7 @@ foreach ($categories as $category) {
 					<label class="w3-label w3-validate" for="category-field">Category</label>
 				</p>
 				<p>
-					<input type="submit" value="ADD" class="w3-btn">
+					<input type="submit" value="ADD" class="w3-btn w3-brown">
 				</p>
 			</form>
 		</div>

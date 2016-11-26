@@ -33,7 +33,7 @@ if (isset($_GET['option']) && array_key_exists($_GET['option'], $searchCriteria)
 $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="w3-card-2 w3-white">
-	<div class="w3-container w3-black">
+	<div class="w3-container w3-brown">
 		<h2>Book List</h2>
 	</div>
 	<div class="w3-light-grey">
@@ -56,7 +56,7 @@ $books = $sth->fetchAll(PDO::FETCH_ASSOC);
 				<input type="text" name="query" placeholder="Search Term" class="w3-input w3-light-grey" value=<?php echo isset($_GET['query']) ? $_GET['query'] : ''; ?>>
 			</div>
 			<div class="w3-col s3 m2 l2 w3-section">
-				<input type="submit" value="Search" class="w3-btn-block">
+				<input type="submit" value="Search" class="w3-btn-block w3-brown">
 			</div>
 		</form>
 	</div>
